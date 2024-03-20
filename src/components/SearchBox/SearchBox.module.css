@@ -1,22 +1,14 @@
-.search {
-  width: 300px;
-  margin-bottom: 20px;
-  border: black 1px solid;
-  border-radius: 5px;
-}
-
-.searchForm {
+.container {
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  font-weight: 500;
+  max-width: 270px;
+  margin-bottom: 20px;
 }
-
-.searchInput {
-  width: 270px;
-  height: 25px;
-}
-
-.searchInput:focus {
-  border: 2px solid #404bbf;
-  outline: none;
+.input {
+  width: 100%;
+  border-radius: 2px;
+  padding: 4px;
+  border: 1px solid #a3a2a2;
+  outline-color: #3651eb;
 }

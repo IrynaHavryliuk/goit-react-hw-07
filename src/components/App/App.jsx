@@ -1,29 +1,27 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchContacts } from '../../redux/contactsOps';
-import { Title } from '../Title/Title';
-import { ContactForm } from '../ContactForm/ContactForm';
-import { SearchBox } from '../SearchBox/SearchBox';
-import { ContactList } from '../ContactList/ContactList';
-import { selectContactsError, selectContactsLoading } from '../../redux/selector';
-import css from './App.module.css';
+import "./App.module.css";
+import ContactForm from "../ContactForm/ContactForm";
+import ContactList from "../ContactList/ContactList";
+import SearchBox from "../SearchBox/SearchBox";
+import { useDispatch, useSelector } from "react-redux";
+import { selectContacts } from "../../redux/contactsSlice";
+import { useEffect } from "react";
+import { fetchContacts } from "../../redux/contactsOps";
 
-export const App = () => {
+export default function App() {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectContactsLoading);
-  const error = useSelector(selectContactsError);
+  const { loading, error } = useSelector(selectContacts);
 
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
-
   return (
-    <div className={css.container}>
-      <Title />
+    <div>
+      <h1>Phonebook</h1>
       <ContactForm />
-      <SearchBox />
-      {isLoading && !error && <b>Request in progress...</b>}
+      <SearchBox>Find contacts by name</SearchBox>
       <ContactList />
+      {loading && !error && <b>Request in progress...</b>}
+      {error && <b>{error}</b>}
     </div>
   );
-};
+}
